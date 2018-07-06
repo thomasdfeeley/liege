@@ -1,0 +1,46 @@
+<html>
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <!-- Google Analytics -->
+     {{ template "_internal/google_analytics_async.html" . }}
+     <title>Articles about digital strategy &amp; marketing, SEO, and UX</title>
+     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+</head>
+<body>
+
+{{ partial "header" . }}
+
+<section class="mw8 center pa4 ph5-l pv0 ma0 mb5 relative">
+  <h1 class="f2 f1-ns lh-title lh-solid-ns mt4-l mb4 fw7">Thoughts about UX, SEO, content, and automation. Actionable advice for DIY digital marketing and strategy folks.</h1>
+  <span class="f2 f1-ns b db blue mb4">- like you -</span>
+  {{ range .Pages }}
+  <article class="bt bb b--black-10">
+    <a class="db pv4 ph3 ph0-l no-underline black dim link" href="{{ .Permalink }}">
+      <div class="flex flex-column flex-row-ns">
+        <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
+          <img src="http://mrmrs.github.io/photos/cpu.jpg" class="db" alt="Photo of a dimly lit room with a computer interface terminal.">
+        </div>
+        <div class="w-100 w-60-ns pl3-ns">
+          <p class="ttu sans-serif f6">{{ if .Params.categories }}
+            {{range .Params.categories}}
+              {{ . }}
+            {{end}}
+          {{end}}</p>
+          <h1 class="f3 fw1 mt0 lh-title">{{ .Title }}</h1>
+          <p class="f5 f4-l lh-copy">
+            {{ .Summary | truncate "140" }}
+          </p>
+          <p class="f6 lh-copy mv0">{{ .Params.author }}</p>
+        </div>
+      </div>
+    </a>
+  </article>
+  {{ end }}
+</section>
+
+{{ partial "footer" . }}
+
+</body>
+</html>
